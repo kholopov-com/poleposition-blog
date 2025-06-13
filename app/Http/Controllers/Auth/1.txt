@@ -1,0 +1,10 @@
+
+AuthenticatedSessionController.php
+ConfirmablePasswordController.php
+EmailVerificationNotificationController.php
+EmailVerificationPromptController.php
+NewPasswordController.php
+PasswordController.php
+PasswordResetLinkController.php
+RegisteredUserController.php
+VerifyEmailController.php

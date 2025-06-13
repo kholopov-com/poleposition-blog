@@ -1,0 +1,37 @@
+# Laravel folders
+/vendor
+/node_modules
+/public/storage
+/storage/*.key
+/storage/oauth-private.key
+/storage/oauth-public.key
+
+# Laravel environment files
+.env
+.env.*
+.env.production
+
+# Cache and logs
+bootstrap/cache/*
+!bootstrap/cache/.gitignore
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+!storage/logs/.gitignore
+!storage/framework/cache/.gitignore
+!storage/framework/sessions/.gitignore
+!storage/framework/views/.gitignore
+
+# IDE / OS files
+*.swp
+*.swo
+*.DS_Store
+*.idea
+*.vscode
+
+# Composer / npm files
+composer.phar
+package-lock.json
+yarn.lock
+npm-debug.log
