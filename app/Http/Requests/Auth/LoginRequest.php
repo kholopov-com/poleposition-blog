@@ -27,7 +27,7 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'username' => 'Неверный логин или пароль.'
+                'username' => 'РќРµРІРµСЂРЅС‹Р№ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ.'
             ]);
         }
 
@@ -45,7 +45,7 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'username' => "Слишком много попыток входа. Повторите через {$seconds} секунд."
+            'username' => "РЎР»РёС€РєРѕРј РјРЅРѕРіРѕ РїРѕРїС‹С‚РѕРє РІС…РѕРґР°. РџРѕРІС‚РѕСЂРёС‚Рµ С‡РµСЂРµР· {$seconds} СЃРµРєСѓРЅРґ."
         ]);
     }
 
