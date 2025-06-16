@@ -8,11 +8,11 @@ use App\Models\Application;
 use App\Http\Controllers\CabinetController;
 
 // Публичные страницы
-Route::get('/', [PageController::class, 'show'])->name('welcome');
+/*Route::get('/', [PageController::class, 'show'])->name('welcome');
 Route::get('/about', [PageController::class, 'show'])->name('about');
 Route::get('/services', [PageController::class, 'show'])->name('services');
 Route::get('/news', [PageController::class, 'show'])->name('news');
-Route::get('/contacts', [PageController::class, 'show'])->name('contacts');
+Route::get('/contacts', [PageController::class, 'show'])->name('contacts');*/
 
 // Админка (только для админа)
 Route::middleware(['auth', 'admin'])->group(function () {

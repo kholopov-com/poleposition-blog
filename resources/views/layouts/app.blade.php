@@ -1,9 +1,20 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    </head>
+<head>
+    <!-- Favicon, meta -->
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Маска телефона
@@ -50,64 +61,73 @@
     });
 </script>
 <body>
-    <div class="wrapper">
-        <nav>
-            @php
-                use App\Models\Page;
-                $menuPages = Page::where('show_in_menu', 1)->orderBy('id')->get();
-            @endphp
-            @foreach ($menuPages as $page)
-                <a href="{{ route($page->slug) }}">{{ $page->title }}</a>
-            @endforeach
 
-            @auth
-                @if (auth()->user()->is_admin)
-                    <a href="{{ route('applications.index') }}">Админка</a>
-                @else
-                    <a href="{{ route('cabinet') }}">Кабинет</a>
-                    <a href="{{ route('application') }}">Карточка</a>
-                @endif
+<header class="site-header">
+    <div class="logo">
+        <a href="{{ route('welcome') }}">
+            <img src="{{ asset('web-app-manifest-192x192_cr.png') }}" alt="PolePosition Logo">
+        </a>
+    </div>
 
-                <span style="margin-left: 15px; font-weight: bold; color: #fff;">
-                    {{ auth()->user()->username }}
-                </span>
-                <span style="color: #fff; margin: 0 8px;">|</span>
+    <button id="hamburgerBtn" class="hamburger" aria-label="Открыть меню">☰</button>
 
-                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button type="submit" class="logout-link">Выход</button>
-                </form>
-            @else
-                <a href="{{ route('login') }}">Вход</a>
-                <a href="{{ route('register') }}">Регистрация</a>
-            @endauth
-
-            {{-- Переключатель темы --}}
-<a href="#" onclick="toggleTheme(); return false;" id="themeToggle" class="theme-toggle">🌙</a>        </nav>
+    <nav id="main-menu" class="nav-links">
+        @foreach(\App\Models\Page::where('show_in_menu',1)->orderBy('id')->get() as $page)
+            <a href="{{ route($page->slug) }}">{{ $page->title }}</a>
+        @endforeach
 
         @auth
-            @if (auth()->user()->is_admin)
-                <div style="margin: 15px 15px 0 15px; padding-top: 10px; border-top: 1px solid #ccc;">
-                    <strong>Администрирование:</strong><br>
-                    @if (Route::has('dashboard'))
-                        <a href="{{ route('dashboard') }}">Страницы</a><br>
-                    @endif
-                    @if (Route::has('applications.index'))
-                        <a href="{{ route('applications.index') }}">Карточки книг</a><br>
-                    @endif
-                </div>
+            @if(auth()->user()->is_admin)
+                <a href="{{ route('applications.index') }}">Админка</a>
+            @else
+                <a href="{{ route('cabinet') }}">Кабинет</a>
+                <a href="{{ route('application') }}">Карточка</a>
             @endif
+            <span class="user-info">{{ auth()->user()->username }}</span>
+            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                @csrf
+                <button type="submit" class="logout-link">Выход</button>
+            </form>
+        @else
+            <a href="{{ route('login') }}">Вход</a>
+            <a href="{{ route('register') }}">Регистрация</a>
         @endauth
 
-        <div class="container">
-            @yield('content')
-        </div>    
+        <a href="#" onclick="toggleTheme(); return false;" id="themeToggle" class="theme-toggle">🌙</a>
+    </nav>
+</header>
 
-        <footer class="site-footer">
-            <div class="container">
-                <p>&copy; {{ date('Y') }} Kholopov.ru — Все права защищены</p>
+<div class="wrapper">
+    @auth
+        @if(auth()->user()->is_admin)
+            <div class="admin-sidebar">
+                <strong>Администрирование:</strong><br>
+                @if(Route::has('dashboard'))<a href="{{route('dashboard')}}">Страницы</a><br>@endif
+                @if(Route::has('applications.index'))<a href="{{route('applications.index')}}">Карточки книг</a><br>@endif
             </div>
-        </footer>
+        @endif
+    @endauth
+
+    <div class="container">
+        @yield('content')
     </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; {{ date('Y') }} PolePosition.Blog — Все права защищены</p>
+        </div>
+    </footer>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const btn  = document.getElementById('hamburgerBtn');
+    const menu = document.getElementById('main-menu');
+    btn.addEventListener('click', function() {
+        menu.classList.toggle('open');
+    });
+});
+</script>
+
 </body>
 </html>

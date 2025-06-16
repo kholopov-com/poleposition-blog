@@ -2,7 +2,7 @@
 @section('content')
     <h1>{{ $page->title }}</h1>
     @php
-        $imagePath = "images/{$page->slug}.png"; // <- здесь должно быть правильное расширение
+        $imagePath = "images/{$page->slug}.jpg"; // <- здесь должно быть правильное расширение
     @endphp
     @if(file_exists(public_path($imagePath)))
         <img src="{{ asset($imagePath) }}" alt="{{ $page->title }}" class="page-image">

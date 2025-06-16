@@ -44,13 +44,11 @@ nav a {
     border-radius: 10px;
     box-shadow: 0 0 8px rgba(0,0,0,0.05);
 }
-
 .auth-container h1,
 .auth-container h2 {
     text-align: center;
     margin-bottom: 25px;
 }
-
 .auth-container label {
     display: block;
     margin-bottom: 5px;
@@ -94,12 +92,19 @@ nav a {
     font-weight: bold;
 }
 /* Футер */
-.wrapper {
-    min-height: 100%;
+/* Гибкий контейнер для всего тела страницы */
+body {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
+/* Обёртка основного контента: растягивается, вытесняя футер вниз */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto; /* <-- вместо min-height:100% */
+}
 .site-footer {
     flex-shrink: 0;
     background-color: #222;
@@ -168,8 +173,6 @@ button.logout-link {
         max-height: 40vh;
     }
 }
-
-
 body.dark {
     background-color: #121212;
     color: #ddd;
@@ -182,13 +185,11 @@ body.dark nav {
 body.dark nav a {
     color: #fff;
 }
-
 body.dark .auth-container {
     background-color: #1e1e1e;
     color: #ddd;
     border-color: #444;
 }
-
 body.dark input,
 body.dark select,
 body.dark textarea {
@@ -202,12 +203,10 @@ body.dark input[type="submit"] {
     background-color: #333;
     color: #fff;
 }
-
 body.dark .site-footer {
     background-color: #111;
     color: #999;
 }
-
 .theme-toggle {
     font-weight: bold;
     color: #fff;
@@ -215,3 +214,82 @@ body.dark .site-footer {
     margin-left: 10px;
     cursor: pointer;
 }
+
+/*new design*/
+/* === Тёмная тема: шапка === */
+body.dark .mobile-header,
+body.dark .site-header {
+    background-color: #1e1e1e;  /* тёмный фон вместо красного */
+}
+/* === Гамбургер и мобильное меню === */
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* центрируем весь блок на десктопе */
+    background-color: #c00;
+    position: sticky;
+    top: 0;
+    height: 90px;         /* ЗДЕСЬ МЕНЯЕМ ВЫСОТУ ШАПКИ */
+    padding: 0 15px;      /* если нужны отступы слева/справа */
+    z-index: 100;
+}
+/* Логотип */
+.site-header .logo-img {
+    height: auto;         /* позволяем изображению менять размер */
+    max-height: 100%;     /* но не выше шапки */
+    width: auto;
+    margin-right: 20px;
+}
+/* Масштабирование логотипа по высоте шапки */
+.site-header .logo {
+    height: 100%;      /* контейнер логотипа ровно по высоте шапки */
+}
+.site-header .logo img {
+    display: block;
+    height: 100%;      /* заставляем картинку занимать всю высоту контейнера */
+    width: auto;       /* сохраняем пропорции */
+}
+/* Ссылки сразу после логотипа и гамбургера */
+.site-header .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+/* Гамбургер — скрыт на десктопе */
+.hamburger {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-left: auto;   /* отодвигаем вправо */
+}
+/* Мобильные правила */
+@media (max-width: 768px) {
+    /* показываем гамбургер */
+    .hamburger {
+        display: block;
+    }
+    /* прячем стандартное nav */
+    .site-header .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #c00;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+    /* если .open — то показываем */
+    .site-header .nav-links.open {
+        display: flex;
+    }
+    .site-header .nav-links.open a {
+        padding: 12px 15px;
+        border-top: 1px solid rgba(255,255,255,0.2);
+        width: 100%;
+    }
+}
+/* === Конец мобильного меню === */
