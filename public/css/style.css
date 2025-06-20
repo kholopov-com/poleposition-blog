@@ -17,10 +17,10 @@ nav a {
     font-weight: bold;
 }
 .container {
-    flex: 1 0 auto; /* основное содержимое растягивается */
+    flex: 1 0 auto; /* РѕСЃРЅРѕРІРЅРѕРµ СЃРѕРґРµСЂР¶РёРјРѕРµ СЂР°СЃС‚СЏРіРёРІР°РµС‚СЃСЏ */
     padding: 30px;
 }
-/* Админка */
+/* РђРґРјРёРЅРєР° */
 .page-editor-block {
     margin-bottom: 30px;
 }
@@ -34,7 +34,7 @@ nav a {
     border: 1px solid #ccc;
     border-radius: 6px;
 }
-/* Авторизация */
+/* РђРІС‚РѕСЂРёР·Р°С†РёСЏ */
 .auth-container {
     max-width: 400px;
     margin: 50px auto;
@@ -91,19 +91,19 @@ nav a {
     text-decoration: none;
     font-weight: bold;
 }
-/* Футер */
-/* Гибкий контейнер для всего тела страницы */
+/* Р¤СѓС‚РµСЂ */
+/* Р“РёР±РєРёР№ РєРѕРЅС‚РµР№РЅРµСЂ РґР»СЏ РІСЃРµРіРѕ С‚РµР»Р° СЃС‚СЂР°РЅРёС†С‹ */
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Обёртка основного контента: растягивается, вытесняя футер вниз */
+/* РћР±С‘СЂС‚РєР° РѕСЃРЅРѕРІРЅРѕРіРѕ РєРѕРЅС‚РµРЅС‚Р°: СЂР°СЃС‚СЏРіРёРІР°РµС‚СЃСЏ, РІС‹С‚РµСЃРЅСЏСЏ С„СѓС‚РµСЂ РІРЅРёР· */
 .wrapper {
     display: flex;
     flex-direction: column;
-    flex: 1 0 auto; /* <-- вместо min-height:100% */
+    flex: 1 0 auto; /* <-- РІРјРµСЃС‚Рѕ min-height:100% */
 }
 .site-footer {
     flex-shrink: 0;
@@ -125,7 +125,7 @@ body {
     border-radius: 8px;
     object-fit: contain;
 }
-/* Выход */
+/* Р’С‹С…РѕРґ */
 button.logout-link {
     background: none;
     border: none;
@@ -137,7 +137,7 @@ button.logout-link {
     text-decoration: none;
     cursor: pointer;
 }
-/* Для смартфона 390х844 px (iPhone 12-14) */
+/* Р”Р»СЏ СЃРјР°СЂС‚С„РѕРЅР° 390С…844 px (iPhone 12-14) */
 @media (max-width: 480px) {
     nav {
         padding: 10px;
@@ -216,47 +216,47 @@ body.dark .site-footer {
 }
 
 /*new design*/
-/* === Тёмная тема: шапка === */
+/* === РўС‘РјРЅР°СЏ С‚РµРјР°: С€Р°РїРєР° === */
 body.dark .mobile-header,
 body.dark .site-header {
-    background-color: #1e1e1e;  /* тёмный фон вместо красного */
+    background-color: #1e1e1e;  /* С‚С‘РјРЅС‹Р№ С„РѕРЅ РІРјРµСЃС‚Рѕ РєСЂР°СЃРЅРѕРіРѕ */
 }
-/* === Гамбургер и мобильное меню === */
+/* === Р“Р°РјР±СѓСЂРіРµСЂ Рё РјРѕР±РёР»СЊРЅРѕРµ РјРµРЅСЋ === */
 .site-header {
     display: flex;
     align-items: center;
-    justify-content: center; /* центрируем весь блок на десктопе */
+    justify-content: center; /* С†РµРЅС‚СЂРёСЂСѓРµРј РІРµСЃСЊ Р±Р»РѕРє РЅР° РґРµСЃРєС‚РѕРїРµ */
     background-color: #c00;
     position: sticky;
     top: 0;
-    height: 90px;         /* ЗДЕСЬ МЕНЯЕМ ВЫСОТУ ШАПКИ */
-    padding: 0 15px;      /* если нужны отступы слева/справа */
+    height: 90px;         /* Р—Р”Р•РЎР¬ РњР•РќРЇР•Рњ Р’Р«РЎРћРўРЈ РЁРђРџРљР */
+    padding: 0 15px;      /* РµСЃР»Рё РЅСѓР¶РЅС‹ РѕС‚СЃС‚СѓРїС‹ СЃР»РµРІР°/СЃРїСЂР°РІР° */
     z-index: 100;
 }
-/* Логотип */
+/* Р›РѕРіРѕС‚РёРї */
 .site-header .logo-img {
-    height: auto;         /* позволяем изображению менять размер */
-    max-height: 100%;     /* но не выше шапки */
+    height: auto;         /* РїРѕР·РІРѕР»СЏРµРј РёР·РѕР±СЂР°Р¶РµРЅРёСЋ РјРµРЅСЏС‚СЊ СЂР°Р·РјРµСЂ */
+    max-height: 100%;     /* РЅРѕ РЅРµ РІС‹С€Рµ С€Р°РїРєРё */
     width: auto;
     margin-right: 20px;
 }
-/* Масштабирование логотипа по высоте шапки */
+/* РњР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРµ Р»РѕРіРѕС‚РёРїР° РїРѕ РІС‹СЃРѕС‚Рµ С€Р°РїРєРё */
 .site-header .logo {
-    height: 100%;      /* контейнер логотипа ровно по высоте шапки */
+    height: 100%;      /* РєРѕРЅС‚РµР№РЅРµСЂ Р»РѕРіРѕС‚РёРїР° СЂРѕРІРЅРѕ РїРѕ РІС‹СЃРѕС‚Рµ С€Р°РїРєРё */
 }
 .site-header .logo img {
     display: block;
-    height: 100%;      /* заставляем картинку занимать всю высоту контейнера */
-    width: auto;       /* сохраняем пропорции */
+    height: 100%;      /* Р·Р°СЃС‚Р°РІР»СЏРµРј РєР°СЂС‚РёРЅРєСѓ Р·Р°РЅРёРјР°С‚СЊ РІСЃСЋ РІС‹СЃРѕС‚Сѓ РєРѕРЅС‚РµР№РЅРµСЂР° */
+    width: auto;       /* СЃРѕС…СЂР°РЅСЏРµРј РїСЂРѕРїРѕСЂС†РёРё */
 }
-/* Ссылки сразу после логотипа и гамбургера */
+/* РЎСЃС‹Р»РєРё СЃСЂР°Р·Сѓ РїРѕСЃР»Рµ Р»РѕРіРѕС‚РёРїР° Рё РіР°РјР±СѓСЂРіРµСЂР° */
 .site-header .nav-links {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 15px;
 }
-/* Гамбургер — скрыт на десктопе */
+/* Р“Р°РјР±СѓСЂРіРµСЂ вЂ” СЃРєСЂС‹С‚ РЅР° РґРµСЃРєС‚РѕРїРµ */
 .hamburger {
     display: none;
     font-size: 24px;
@@ -264,15 +264,15 @@ body.dark .site-header {
     border: none;
     color: #fff;
     cursor: pointer;
-    margin-left: auto;   /* отодвигаем вправо */
+    margin-left: auto;   /* РѕС‚РѕРґРІРёРіР°РµРј РІРїСЂР°РІРѕ */
 }
-/* Мобильные правила */
+/* РњРѕР±РёР»СЊРЅС‹Рµ РїСЂР°РІРёР»Р° */
 @media (max-width: 768px) {
-    /* показываем гамбургер */
+    /* РїРѕРєР°Р·С‹РІР°РµРј РіР°РјР±СѓСЂРіРµСЂ */
     .hamburger {
         display: block;
     }
-    /* прячем стандартное nav */
+    /* РїСЂСЏС‡РµРј СЃС‚Р°РЅРґР°СЂС‚РЅРѕРµ nav */
     .site-header .nav-links {
         display: none;
         flex-direction: column;
@@ -282,7 +282,7 @@ body.dark .site-header {
         top: 100%;
         left: 0;
     }
-    /* если .open — то показываем */
+    /* РµСЃР»Рё .open вЂ” С‚Рѕ РїРѕРєР°Р·С‹РІР°РµРј */
     .site-header .nav-links.open {
         display: flex;
     }
@@ -292,4 +292,21 @@ body.dark .site-header {
         width: 100%;
     }
 }
-/* === Конец мобильного меню === */
+/* === РљРѕРЅРµС† РјРѕР±РёР»СЊРЅРѕРіРѕ РјРµРЅСЋ === */
+/* ============================================================*/
+/* Calendar table styles */
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar-table th, .calendar-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.calendar-table tbody tr:hover {
+    background-color: #fff4e6; /* СЃРІРµС‚Р»С‹Р№ РѕСЂР°РЅР¶РµРІС‹Р№ РїСЂРё РЅР°РІРµРґРµРЅРёРё */
+}

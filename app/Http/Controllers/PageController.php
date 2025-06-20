@@ -26,10 +26,19 @@ class PageController extends Controller
         }
         return redirect()->route('dashboard')->with('success', 'Страницы обновлены.');
     }
-    public function show()
-    {
-        $slug = request()->route()->getName();
-        $page = \App\Models\Page::where('slug', $slug)->firstOrFail();
-        return view('page', compact('page'));
+public function show(Request $request)
+{
+    $slug = $request->route()->getName();
+    $page = \App\Models\Page::where('slug', $slug)->firstOrFail();
+
+    // Передаем дополнительные данные для конкретных страниц
+    $data = ['page' => $page];
+
+    if ($slug === 'calendar') {
+        $data['calendar'] = \App\Models\Calendar::orderBy('date')->get();
+        return view('calendar', $data);
     }
+
+    return view('page', $data);
+}
 }

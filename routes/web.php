@@ -6,6 +6,11 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\DashboardApplicationController;
 use App\Models\Application;
 use App\Http\Controllers\CabinetController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\ResultsController;
+use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\CircuitsController;
+use App\Http\Controllers\BlogController;
 
 // Публичные страницы
 /*Route::get('/', [PageController::class, 'show'])->name('welcome');
@@ -13,6 +18,12 @@ Route::get('/about', [PageController::class, 'show'])->name('about');
 Route::get('/services', [PageController::class, 'show'])->name('services');
 Route::get('/news', [PageController::class, 'show'])->name('news');
 Route::get('/contacts', [PageController::class, 'show'])->name('contacts');*/
+
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
+Route::get('/results', [ResultsController::class, 'index'])->name('results');
+Route::get('/teams', [TeamsController::class, 'index'])->name('teams');
+Route::get('/circuits', [CircuitsController::class, 'index'])->name('circuits');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
 // Админка (только для админа)
 Route::middleware(['auth', 'admin'])->group(function () {
