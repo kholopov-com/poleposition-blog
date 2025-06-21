@@ -5,13 +5,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Driver extends Model
 {
-    protected $fillable = ['name', 'team_id'];
+    // ... Ð²Ð°ÑˆÐ¸ fillable / hidden / timestamps Ð¸ Ñ‚.Ð´.
 
     /**
-     * Ñâÿçü: ýòîò ïèëîò ïðèíàäëåæèò êîìàíäå
+     * ÐžÐ´Ð¸Ð½-Ðº-Ð¾Ð´Ð½Ð¾Ð¼Ñƒ: ÑÑ‚Ð°Ñ‚Ð¸ÑÑ‚Ð¸ÐºÐ° Ð¿Ð¸Ð»Ð¾Ñ‚Ð°
      */
-    public function team()
+    public function stats()
     {
-        return $this->belongsTo(Team::class);
+        return $this->hasOne(DriverStat::class, 'driver_id');
     }
 }

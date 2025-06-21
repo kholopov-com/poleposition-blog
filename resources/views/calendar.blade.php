@@ -19,13 +19,16 @@
                 <td>{{ \Carbon\Carbon::parse($race->race_date)->format('d.m.Y') }}</td>
                 <td><a href="#">{{ $race->grand_prix }}</a></td>
                 <td><a href="#">{{ $race->circuit?->name }}</a></td>
-                <td>
-                    @if($race->winner)
-                        <a href="#">{{ $race->winner->name }}</a>
-                    @else
-                        —
-                    @endif
-                </td>
+
+<td>
+    @if($race->winner)
+        <a href="{{ route('teams') }}#driver-{{ $race->winner->id }}">
+            {{ $race->winner->name }}
+        </a>
+    @else
+        &mdash;
+    @endif
+</td>
                 <td>
                     @if($race->team)
                         <a href="#">{{ $race->team->name }}</a>

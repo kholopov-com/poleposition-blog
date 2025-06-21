@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Circuit;
+use App\Models\Driver;
+use App\Models\Team;
 
 class Race extends Model
 {

@@ -1,11 +1,43 @@
+/* ==== Подключение PT Root UI из ttf ==== */
+@font-face {
+  font-family: 'PT Root UI';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/pt-root-ui/PT-Root-UI_Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'PT Root UI';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/pt-root-ui/PT-Root-UI_Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'PT Root UI';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/pt-root-ui/PT-Root-UI_Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'PT Root UI';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/pt-root-ui/PT-Root-UI_Bold.ttf') format('truetype');
+}
+/* ==== /PT Root UI ==== */
+
+/*конец подключения шрифтов*/
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
-body {
+/*body {
     font-family: 'PT Root UI', sans-serif;
-}
+}*/                                       
+ body {
+     font-family: 'PT Root UI', sans-serif;
+ }
+
 nav {
     background-color: #c00;
     padding: 15px;
@@ -309,4 +341,113 @@ body.dark .site-header {
 
 .calendar-table tbody tr:hover {
     background-color: #fff4e6; /* светлый оранжевый при наведении */
+}
+
+
+/* === Driver Card: фото и информация рядом === */
+.driver-content {
+    display: flex;             /* элементы в строку */
+    align-items: flex-start;   /* выравнять по верху */
+    gap: 20px;                 /* расстояние между фото и списком */
+}
+
+.driver-photo img {
+    max-width: 150px;          /* ограничим ширину фото */
+    height: auto;
+    display: block;
+}
+
+.driver-info {
+    flex: 1;                   /* список займёт оставшееся место */
+    margin: 0;
+    padding: 0;
+    list-style: none;          /* убрать маркеры */
+}
+
+.driver-info li {
+    margin-bottom: 8px;
+}
+
+/*+++++++++++++++++++++++++++++++++*/
+/* === Сетка карточек пилотов в команде === */
+.drivers-list {
+    display: flex;          /* расположить карточки в строку */
+    flex-wrap: wrap;        /* переносить на новую строку при нехватке места */
+    gap: 20px;              /* отступы между карточками */
+    margin-bottom: 30px;    /* немного пространства снизу */
+}
+
+.driver-card {
+    flex: 1 1 300px;        /* каждая карточка минимум 300px, но может растягиваться */
+}
+
+/* === На мобильных экранах — стек карточек === */
+@media (max-width: 768px) {
+    .drivers-list {
+        flex-direction: column;  /* одна под другой */
+    }
+    .driver-card {
+        width: 100%;             /* занимать всю ширину */
+    }
+}
+
+/* === Сетка панелей команд === */
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+/* Чтобы сам блок .team-panel не растягивал страницы */
+.team-panel {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+/* === Масштабирование фото машин в командах === */
+.team-car img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/*^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+/* ========== Ссылки в календаре ========== */
+.calendar-table a {
+    color: #003366;            /* насыщенный тёмно-синий */
+    text-decoration: none;     /* без подчёркивания */
+}
+.calendar-table a:visited {
+    color: #003366;            /* тот же цвет для посещённых ссылок */
+}
+.calendar-table a:hover,
+.calendar-table a:focus {
+    color: #6699CC;            /* светло-синий при наведении/фокусе */
+    text-decoration: none;     /* подчёркивание по-прежнему отключено */
+}
+
+/* ========== Мобильный вид календаря: оставляем только Дату, Гран При и Победителя ========== */
+@media (max-width: 480px) {
+  .calendar-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+  /* скрываем 3-й (Circuit) и 5-й (Team) столбцы */
+  .calendar-table th:nth-child(3),
+  .calendar-table td:nth-child(3),
+  .calendar-table th:nth-child(5),
+  .calendar-table td:nth-child(5) {
+    display: none;
+  }
+  /* чтобы оставшиеся колонки равномерно растягивались */
+  .calendar-table th,
+  .calendar-table td {
+    word-wrap: break-word;
+    white-space: normal;
+  }
 }
