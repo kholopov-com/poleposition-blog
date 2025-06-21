@@ -19,27 +19,38 @@
                 </div>
 
                 {{-- Описание команды --}}
-                <p class="team-desc">{{ optional($team->profile)->description }}</p>
+                <p class="team-desc">{{ optional($team->profile)->description ?? '' }}</p>
 
                 {{-- Пилоты --}}
                 <div class="drivers-list">
                     @foreach($team->drivers as $driver)
                         <div class="driver-card" id="driver-{{ $driver->id }}">
-                            <h3>#{{ $driver->stats->position }} {{ $driver->name }}</h3>
+                            <h3>
+                                #{{ optional($driver->stats)->position ?? '-' }}
+                                {{ $driver->name }}
+                            </h3>
                             <div class="driver-content">
                                 <div class="driver-photo">
-                                    <img src="{{ asset('images/'.$driver->stats->photo) }}"
-                                         alt="{{ $driver->name }}">
+                                    <img 
+                                        src="{{ asset('images/' . (optional($driver->stats)->photo ?: 'default-driver.png')) }}"
+                                        alt="{{ $driver->name }}"
+                                    >
                                 </div>
                                 <ul class="driver-info">
-                                    <li>Сезоны: {{ $driver->stats->seasons }}</li>
-                                    <li>Гран-при: {{ $driver->stats->grand_prix_count }}</li>
-                                    <li>Дебют: {{ \Carbon\Carbon::parse($driver->stats->debut)->format('Y-m-d') }}</li>
-                                    <li>Победы: {{ $driver->stats->wins }}</li>
-                                    <li>Поулы: {{ $driver->stats->poles }}</li>
-                                    <li>Подиумы: {{ $driver->stats->podiums }}</li>
-                                    <li>Очки: {{ $driver->stats->points }}</li>
-                                    <li>Быстрые круги: {{ $driver->stats->fastest_laps }}</li>
+                                    <li>Сезоны: {{ optional($driver->stats)->seasons ?? '-' }}</li>
+                                    <li>Гран-при: {{ optional($driver->stats)->grand_prix_count ?? '-' }}</li>
+                                    <li>Дебют: 
+                                        @if(optional($driver->stats)->debut)
+                                            {{ \Carbon\Carbon::parse($driver->stats->debut)->format('Y-m-d') }}
+                                        @else
+                                            -
+                                        @endif
+                                    </li>
+                                    <li>Победы: {{ optional($driver->stats)->wins ?? '0' }}</li>
+                                    <li>Поулы: {{ optional($driver->stats)->poles ?? '0' }}</li>
+                                    <li>Подиумы: {{ optional($driver->stats)->podiums ?? '0' }}</li>
+                                    <li>Очки: {{ optional($driver->stats)->points ?? '0' }}</li>
+                                    <li>Быстрые круги: {{ optional($driver->stats)->fastest_laps ?? '0' }}</li>
                                 </ul>
                             </div>
                         </div>
